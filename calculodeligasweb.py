@@ -1,5 +1,21 @@
 import streamlit as st
 
+
+st.set_page_config(page_title="Cálculo de Ligas Metálicas", page_icon="🔒", layout="centered")
+
+# 🔐 Login e senha
+st.title("🔒 Acesso Restrito")
+
+login = st.text_input("👤 Usuário")
+senha = st.text_input("🔑 Senha", type="password")
+
+if login != "projetogui" or senha != "calculodeliga1":
+    st.warning("⚠️ Acesso negado. Digite o usuário e a senha corretos.")
+    st.stop()
+
+st.success("✅ Acesso liberado!")
+st.markdown("---")
+
 st.set_page_config(
     page_title="Cálculo de Ligas Metálicas",
     page_icon="⚙️",
