@@ -1,36 +1,64 @@
 import streamlit as st
 
-st.set_page_config(page_title="Cálculo de Ligas Metálicas", page_icon="⚙️", layout="centered")
+st.set_page_config(
+    page_title="Cálculo de Ligas Metálicas",
+    page_icon="⚙️",
+    layout="centered"
+)
 
 st.title("⚙️ Cálculo de Ligas Metálicas")
+st.subheader("💡 Calcule rapidamente a quantidade ideal de Carbono, Manganês e Silício.")
 
-st.markdown("Preencha os dados abaixo para calcular a quantidade de ligas metálicas necessárias.")
+st.markdown("---")
 
-# Entradas
-peso = st.number_input("Peso do aço (em toneladas):", min_value=0.0, step=0.1, format="%.2f")
-p_carbono = st.number_input("Ponto desejado de Carbono:", min_value=0.0, step=0.01, format="%.2f")
-p_manganes = st.number_input("Ponto desejado de Manganês:", min_value=0.0, step=0.01, format="%.2f")
-p_silicio = st.number_input("Ponto desejado de Silício:", min_value=0.0, step=0.01, format="%.2f")
+st.header("📥 Dados de Entrada")
 
-if st.button("Calcular"):
+col1, col2 = st.columns(2)
+
+with col1:
+    peso = st.number_input("🔧 Peso do aço (toneladas):", min_value=0.0, step=0.1, format="%.2f")
+    p_carbono = st.number_input("🌑 Ponto de Carbono:", min_value=0.0, step=0.01, format="%.2f")
+
+with col2:
+    p_manganes = st.number_input("🔵 Ponto de Manganês:", min_value=0.0, step=0.01, format="%.2f")
+    p_silicio = st.number_input("🟠 Ponto de Silício:", min_value=0.0, step=0.01, format="%.2f")
+
+st.markdown("---")
+
+if st.button("🚀 Calcular"):
     if peso == 0:
         st.error("⚠️ O peso do aço deve ser maior que zero.")
     else:
-        # Rendimentos
         rendimento_carbono = 95
         rendimento_manganes = 65
-        rendimento_silicio = 80
+        rendimento_silicio = 75
 
-        # Cálculos
         qtd_carbono = (p_carbono * peso * 1000) / rendimento_carbono
         qtd_manganes = (p_manganes * peso * 1000) / rendimento_manganes
         qtd_silicio = (p_silicio * peso * 1000) / rendimento_silicio
 
-        # Resultados
-        st.subheader("🔍 Resultado:")
-        st.success(f"🔹 Quantidade de **CARBONO**: {qtd_carbono:.2f} kg")
-        st.success(f"🔹 Quantidade de **MANGANÊS**: {qtd_manganes:.2f} kg")
-        st.success(f"🔹 Quantidade de **SILÍCIO**: {qtd_silicio:.2f} kg")
+        st.success("✅ Cálculo realizado com sucesso!")
+
+        with st.expander("🔍 Ver Resultado"):
+            st.subheader("📊 Resultado")
+            st.success(f"🌑 Carbono: {qtd_carbono:.2f} kg")
+            st.success(f"🔵 Manganês: {qtd_manganes:.2f} kg")
+            st.success(f"🟠 Silício: {qtd_silicio:.2f} kg")
 
 st.markdown("---")
-st.caption("Desenvolvido por Guilherme • Funciona no iOS, Android e PC via navegador 🌎")
+
+with st.expander("ℹ️ Como funciona este cálculo?"):
+    st.write("""
+    O cálculo considera os pontos desejados de cada elemento, 
+    multiplica pelo peso do aço (em toneladas) e divide pela eficiência da liga.
+
+    - Carbono: 95%
+    - Manganês: 65%
+    - Silício: 75%
+
+    Fórmula:
+    (ponto desejado * peso do aço * 1000) / rendimento
+    """)
+
+st.markdown("---")
+st.caption("Desenvolvido por Guilherme Oliveira • 🌐 Funciona no iOS, Android e PC • 🚀 Powered by Streamlit")
