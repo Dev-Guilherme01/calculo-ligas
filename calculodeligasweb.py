@@ -40,14 +40,5 @@ else:
 
 st.markdown("---")
 
-with st.expander("ℹ️ Como funciona este cálculo?"):
-    st.write("""
-    O cálculo considera os pontos desejados de cada elemento, 
-    multiplica pelo peso do aço (em toneladas) e divide pela eficiência da liga.
-
-    - Carbono: 95%
-    - Manganês: 65%
-    - Silício: 75% """)
-
 st.markdown("---")
 st.caption("Desenvolvido por Guilherme Oliveira • 🌐 Funciona no iOS, Android e PC • 🚀 Powered by Streamlit")
